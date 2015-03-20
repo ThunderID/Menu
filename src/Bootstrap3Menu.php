@@ -64,7 +64,7 @@ class Bootstrap3Menu extends Menu implements IMenu {
 		{
 			foreach ($parent_menu['children'] as $child_menu)
 			{
-				$str .= '<li><a href="'.$child_menu['url'].'">' . ($child_menu['icon'] ? '<i class="">'.$child_menu['icon'].'</i> ' : '') . $child_menu['label'] . '</a>';
+				$str .= '<li><a href="'.$child_menu['url'].'">' . ($child_menu['icon'] ? '<i class="'.$child_menu['icon'].'"></i> ' : '') . $child_menu['label'] . '</a>';
 				if (array_key_exists('children', $child_menu) && count($child_menu['children']))
 				{
 					$str .= $this->_render($child_menu);
