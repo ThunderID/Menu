@@ -1,6 +1,7 @@
 <?php 
 
 include '../src/Interface/IMenu.php';
+include '../src/Menu.php';
 include '../src/Bootstrap3Menu.php';
 
 $menu = new \thunderid\menu\Bootstrap3Menu();

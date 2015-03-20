@@ -1,6 +1,6 @@
 <?php namespace thunderid\menu;
 
-class Bootstrap3Menu implements IMenu {
+class Bootstrap3Menu extends Menu implements IMenu {
 
 	protected $ids = [];
 	protected $options;
@@ -13,46 +13,7 @@ class Bootstrap3Menu implements IMenu {
 		$this->add('__left_nav', 'left_nav', '', '');
 		$this->add('__right_nav', 'left_nav', '', '');
 	}
-
-	/**
-	 * Add menu item
-	 * @param string $id unique menu item identifier 
-	 * @param IMenuItem $menu_item menu item
-	 * @param string $parent_id unique parent menu item identifier
-	 * @return boolean
-	 * @author 
-	 **/
-	function add($id, $label, $url, $icon = null, $parent_id = null)
-	{
-		$this->ids[$id] = ['label' => $label, 'url' => $url, 'icon' => $icon];
-		if ($parent_id)
-		{
-			if (!array_key_exists($parent_id, $this->ids))
-			{
-				throw new Exception('$parent_id not found', 1);
-			}
-			else
-			{
-				$this->ids[$parent_id]['children'][] = &$this->ids[$id];
-				$this->ids[$id]['parent'] = &$this->ids[$parent_id];
-			}
-		}
-	}
-
-	/**
-	 * find particular menuItem
-	 *
-	 * @return MenuItem|null 
-	 * @author 
-	 **/
-	function find($id)
-	{
-		if (!array_key_exists($id, $this->ids))
-		{
-			throw new Exception('$id not found', 1);
-		}
-	}
-
+	
 	/**
 	 * Render
 	 * @return string
@@ -60,7 +21,6 @@ class Bootstrap3Menu implements IMenu {
 	 **/
 	function render()
 	{
-		print_r($this->ids);
 		$str = '
 				<nav class="navbar '. ($this->options['is_inverse_navbar'] ? 'navbar-default' : 'navbar-inverse') .'" role="navigation">
 					<!-- Brand and toggle get grouped for better mobile display -->
@@ -104,7 +64,7 @@ class Bootstrap3Menu implements IMenu {
 		{
 			foreach ($parent_menu['children'] as $child_menu)
 			{
-				$str .= '<li><a href="'.$child_menu['url'].'">' . $child_menu['label'] . '</a>';
+				$str .= '<li><a href="'.$child_menu['url'].'">' . ($child_menu['icon'] ? '<i class="">'.$child_menu['icon'].'</i> ' : '') . $child_menu['label'] . '</a>';
 				if (array_key_exists('children', $child_menu) && count($child_menu['children']))
 				{
 					$str .= $this->_render($child_menu);
