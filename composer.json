@@ -12,6 +12,8 @@
         "php"   : ">=5.3.0"
     },
     "autoload": {
-        "ThunderID\\Menu\\"     : "src/"
+        "psr-4": {
+            "ThunderID\\Menu\\"     : "src/"
+        }
     }
 }
