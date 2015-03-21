@@ -1,4 +1,4 @@
-<?php namespace thunderid\menu;
+<?php namespace ThunderID\Menu;
 
 interface IMenu {
 	/**

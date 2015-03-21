@@ -1,4 +1,6 @@
-<?php namespace thunderid\menu;
+<?php namespace ThunderID\Menu;
+
+use Exception;
 
 abstract class Menu implements IMenu {
 
