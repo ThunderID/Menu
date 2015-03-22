@@ -48,10 +48,14 @@ class MaterialAdminSideMenu extends Menu implements IMenu {
 		}
 
 		$str = '<li class="'.($has_children ? 'gui-folder' : ''). '">
-					<a>
-						<div class="gui-icon"><i class="'.$parent_menu['icon'].'"></i></div>
-						<span class="title">'.$parent_menu['label'].'</span>
-					</a>';
+					<a href="'.$parent_menu['url'].'">';
+		if ($parent_menu['icon'])
+		{
+			$str .= '<div class="gui-icon"><i class="'.$parent_menu['icon'].'"></i></div>';
+		}
+						
+		$str .= '<span class="title">'.$parent_menu['label'].'</span>
+					</a><ul>';
 
 		if ($has_children)
 		{
@@ -61,7 +65,7 @@ class MaterialAdminSideMenu extends Menu implements IMenu {
 			}
 		}		
 
-		$str .= '</li>';
+		$str .= '</ul></li>';
 
 		return $str;
 	}
